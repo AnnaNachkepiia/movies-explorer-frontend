@@ -1,0 +1,28 @@
+.nav-tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  height: 66px;
+  /* position: absolute;
+  bottom: 0; */
+  width: 100%;
+}
+.nav-tab__nav {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.nav-tab__link {
+  text-decoration: underline;
+  margin: 0 40px 0 0;
+  padding: 0;
+}
+.nav-tab__link:last-child {
+  margin: 0;
+}
