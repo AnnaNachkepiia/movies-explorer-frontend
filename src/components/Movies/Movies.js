@@ -8,10 +8,13 @@ function Movies() {
   return (
     <section>
       <SearchForm />
-     <Preloader />
-      <MoviesCardList />
-
-     
+      <Preloader />
+      <MoviesCardList>
+        <button className="movie__save movie__save_type_invisible" />
+      </MoviesCardList>
+      <button type="submit" className="movies__button-more">
+        <p className="movies__button-text">Ещё</p>
+      </button>
     </section>
   );
 }

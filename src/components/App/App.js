@@ -69,10 +69,38 @@ function App() {
             <Movies />
             <Footer />
           </Route>
-          {/* <Route path="/saved-movies">
+          <Route path="/saved-movies">
+          <Header className="header ">
+              <nav className="header__navigation">
+                <Link
+                  to="/movies"
+                  className="header__button header__button_type_movies"
+                >
+                  Фильмы
+                </Link>
+                <Link
+                  to="/saved-movies"
+                  className="header__button header__button_type_saved-movies"
+                >
+                  Сохранённые фильмы
+                </Link>
+                <Link
+                  to="/profile"
+                  className="header__button header__button_type_profile"
+                >
+                  <img
+                    className="header__profile-icon"
+                    alt="иконка профиль"
+                    src={icon}
+                  ></img>
+                  <p className="header__profile-button-name">Аккаунт</p>
+                </Link>
+              </nav>
+            </Header>
             <SavedMovies />
+            <Footer/>
           </Route>
-          <Route path="/profile">
+          {/* <Route path="/profile">
             <Profile />
           </Route>
           <Route path="/signin">

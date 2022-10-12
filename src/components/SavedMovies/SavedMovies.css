@@ -1,0 +1,11 @@
+.movie__delete {
+  background-image: url(../../images/iconMovieDelete.svg);
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-position: center;
+  padding: 0;
+}

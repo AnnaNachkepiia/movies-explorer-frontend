@@ -2,7 +2,7 @@ import "./MoviesCard.css";
 import React from "react";
 
 
-function MoviesCard() {
+function MoviesCard(props) {
   return (
     <ul className="movies__cardlist">
       <li className="movie">
@@ -16,7 +16,7 @@ function MoviesCard() {
             <p className="movie__name">33 слова о дизайне</p>
             <p className="movie__duration">1ч 45 мин</p>
           </div>
-          <button className="movie__save movie__save_type_invisible"/>
+          {props.children}
         </div>
       </li>
 

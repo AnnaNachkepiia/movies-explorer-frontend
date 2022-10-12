@@ -1,0 +1,10 @@
+.movies__button-more {
+  background-color: #fff;
+  margin: 50px auto 80px;
+  height: 36px;
+  width: 320px;
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+  outline: #e8e8e8 solid 1px;
+}
