@@ -5,6 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 .header_type_promo {
   background-color: #f3c1f8;
@@ -51,16 +52,16 @@
 .header__button_type_movies {
   padding-right: 20px;
   font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
 }
 .header__button_type_saved-movies {
   padding-right: 50px;
   font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 18px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
 }
 .header__button_type_profile {
   width: 100px;
@@ -71,7 +72,7 @@ line-height: 18px;
   display: flex;
   align-items: center;
 }
-.header__profile-icon{
+.header__profile-icon {
   height: 14px;
   width: 12px;
   margin-right: 7px;
@@ -82,4 +83,17 @@ line-height: 18px;
   font-size: 14px;
   line-height: 16px;
 }
-
+.header__menu-button {
+  visibility: hidden;
+  padding: 0;
+  background-image: url(../../images/icon-menu.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 44px;
+  height: 44px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 70px;
+}

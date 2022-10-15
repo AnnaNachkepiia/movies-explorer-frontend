@@ -1,0 +1,77 @@
+.login {
+  width: 396px;
+  display: flex;
+  flex-direction: column;
+  margin: 70px auto 0;
+}
+.login__logo {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 40px;
+}
+.login__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+.login__form {
+  width: 100%;
+  margin-top: 20px;
+}
+.login__input-capture {
+  margin: 20px 0 10px auto;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #a0a0a0;
+}
+.login__input {
+  padding: 0;
+  padding-left: 15px;
+  margin: 0;
+  width: 100%;
+  height: 46px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: none;
+}
+.login__input-error {
+  color: #ff4062;
+}
+.login__button-submit {
+  width: 100%;
+  height: 45px;
+  background-color: #000000;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-top: 192px;
+  margin-bottom: 16px;
+  padding: 0;
+  cursor: pointer;
+}
+.login__subtitle {
+  margin-top: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #a0a0a0;
+}
+.login__link {
+  margin-left: 6px;
+  text-decoration: none;
+  color: #000000;
+}
+.login__text-error {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ff4062;
+}
