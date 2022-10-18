@@ -53,3 +53,8 @@
   line-height: 129%;
   padding-left: 12px;
 }
+@media screen and (max-width: 419px) {
+  .filter__checkbox-capture {
+    font-size: 11px;
+    line-height: 18px;  }
+}

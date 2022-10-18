@@ -16,7 +16,7 @@ function Movies() {
       <Navigation />
       <Header className="header ">
         <button type="button" className="header__menu-button"/>
-        <nav className="header__navigation ">
+        <nav className="header__navigation header__navigation_type_user">
           <Link
             to="/movies"
             className="header__button header__button_type_movies"

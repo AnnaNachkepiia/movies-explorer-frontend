@@ -2,6 +2,17 @@
   margin-top: 60px;
   padding: 0 70px;
 }
+@media screen and (max-width: 767px) {
+  .search {
+    padding: 0 30px;
+    margin-top: 80px;
+  }
+}
+@media screen and (max-width: 419px) {
+  .search {
+    padding: 0 14px;
+  }
+}
 .search__form {
   display: flex;
   flex-direction: row;
@@ -40,4 +51,14 @@
   height: 1px;
   background-color: #E8E8E8;
   margin-top: 70px;
+}
+@media screen and (max-width: 767px) {
+  .search__form-line {
+    margin-top: 51px;
+  }
+}
+@media screen and (max-width: 419px) {
+  .search__form-line {
+    margin-top: 50px;
+  }
 }

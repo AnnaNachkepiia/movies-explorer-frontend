@@ -3,14 +3,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import icon from "../../images/icon-profile.svg";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Navigation from "../Navigation/Navigation";
 
 function Profile() {
   return (
     <>
+          <Navigation />
       <Header className="header ">
         <button type="button" className="header__menu-button" />
-        <nav className="header__navigation">
+        <nav className="header__navigation header__navigation_type_user">
           <Link
             to="/movies"
             className="header__button header__button_type_movies"

@@ -1,4 +1,7 @@
 .movies__button-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
   margin: 50px auto 80px;
   height: 36px;
@@ -7,4 +10,23 @@
   border-radius: 5px;
   border: none;
   outline: #e8e8e8 solid 1px;
+}
+
+@media screen and (max-width: 419px) {
+  .movies__button-more {
+    width: 240px;
+  }
+}
+@media screen and (max-width: 319px) {
+  .movies__button-more {
+    width: 80%;
+  }
+}
+.movies__button-text {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
 }

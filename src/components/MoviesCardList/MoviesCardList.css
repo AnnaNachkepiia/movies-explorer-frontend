@@ -2,18 +2,20 @@
   margin-top: 70px;
   padding: 0 70px;
   margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column;*/
+} 
+@media screen and (max-width: 819px) {
+  .movies {
+    padding: 0 30px;
+  }
 }
-
-.movies__button-text {
-  margin: 0;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+@media screen and (max-width: 419px) {
+  .movies {
+    padding: 0 10px;
+    margin-top: 40px;
+  }
+}
+.movies__container  {
+  width: 100%;
 }
