@@ -147,6 +147,9 @@
   line-height: 17px;
   color: #000;
 }
+.aboutme__link:hover {
+opacity: 0.5;
+}
 .aboutme__photo {
   border-radius: 10px;
   width: 270px;

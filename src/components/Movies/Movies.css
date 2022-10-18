@@ -11,8 +11,11 @@
   border: none;
   outline: #e8e8e8 solid 1px;
 }
+.movies__button-more:hover {
+  opacity: 0.5;
+}
 
-@media screen and (max-width: 419px) {
+  @media screen and (max-width: 419px) {
   .movies__button-more {
     width: 240px;
   }

@@ -25,6 +25,7 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
+  cursor: pointer;
 }
 .nav-tab__link:last-child {
   margin: 0;
@@ -34,4 +35,7 @@
     font-size: 11px;
     margin-right: 24px;
   }
+}
+.nav-tab__link:hover{
+  opacity: 0.8;
 }

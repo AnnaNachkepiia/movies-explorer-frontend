@@ -85,6 +85,9 @@
   text-decoration: none;
   color: #000;
 }
+.footer__link:hover{
+  opacity: 0.8;
+}
 @media screen and (max-width: 419px) {
   .footer__link {
     margin: 0;

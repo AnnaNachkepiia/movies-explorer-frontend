@@ -62,6 +62,10 @@
   align-items: center;
   justify-content: center;
 }
+.header__button:hover{
+  opacity: 0.5;
+
+}
 .header__button_type_signup {
   padding-right: 30px;
   font-family: "Inter";

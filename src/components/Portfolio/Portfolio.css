@@ -53,7 +53,10 @@
   justify-content: space-between;
   text-decoration: none;
 }
-.portfolio__text {
+.portfolio__link:hover {
+opacity: 0.5;
+}
+  .portfolio__text {
   margin: 0;
   font-style: normal;
   font-weight: 400;

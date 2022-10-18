@@ -47,6 +47,9 @@
   padding-top: 159px;
   justify-content: space-between;
 }
+.navigation__links:hover {
+opacity: 0.5;
+}
 @media screen and (max-width: 520px) {
   .navigation__links {
     padding-top: 144px;

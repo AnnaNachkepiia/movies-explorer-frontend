@@ -78,6 +78,9 @@
   padding: 0;
   cursor: pointer;
 }
+.login__button-submit:hover{
+  opacity: 0.7;
+}
 @media screen and (max-width: 419px) {
   .login__button-submit {
     font-size: 12px;
@@ -104,6 +107,9 @@
   margin-left: 6px;
   text-decoration: none;
   color: #000000;
+}
+.login__link:hover{
+  opacity: 0.5;
 }
 .login__text-error {
   margin-top: 10px;
