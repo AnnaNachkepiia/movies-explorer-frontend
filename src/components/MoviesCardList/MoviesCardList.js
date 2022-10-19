@@ -2,10 +2,12 @@ import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
-function MoviesCardList(card) {
+function MoviesCardList(props) {
   return (
     <section className="movies">
-          <MoviesCard/>
+      <div className="movies__container">
+      <MoviesCard>{props.children}</MoviesCard>
+      </div>
     </section>
   );
 }

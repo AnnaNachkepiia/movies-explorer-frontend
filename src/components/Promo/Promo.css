@@ -1,4 +1,5 @@
 .promo {
+  padding-top: 74px;
   display: flex;
   min-height: 524px;
   flex-direction: column;
@@ -8,6 +9,7 @@
   align-items: center;
 }
 .promo__title {
+  max-width: 90%;
   position: absolute;
   margin: 0;
   padding: 0;
@@ -19,8 +21,20 @@
   text-align: center;
   letter-spacing: -0.04em;
 }
+@media screen and (max-width: 319px) {
+  .promo__title {
+    font-size: 31px;
+    line-height: 126%;
+  }
+}
 .promo__logo {
   width: 320px;
   height: 320px;
   z-index: 1;
+}
+@media screen and (max-width: 319px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+  }
 }
