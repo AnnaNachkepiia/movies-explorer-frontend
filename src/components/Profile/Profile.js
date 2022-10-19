@@ -37,7 +37,7 @@ function Profile() {
           </Link>
         </nav>
       </Header>
-      <section className="profile">
+      <main className="profile">
         <h2 className="profile__title">Привет, Aнна!</h2>
         <div className="profile__info">
           <div className="profile__string">
@@ -62,7 +62,7 @@ function Profile() {
         >
           Выйти из аккаунта
         </button>
-      </section>
+      </main>
     </>
   );
 }

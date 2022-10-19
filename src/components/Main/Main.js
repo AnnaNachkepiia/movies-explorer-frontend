@@ -13,7 +13,7 @@ import Portfolio from "../Portfolio/Portfolio.js";
 
 function Main() {
   return (
-    <main className="main">
+    <>
       <Header className="header header_type_promo">
         <nav className="header__navigation header__navigation_type_promo">
           <Link
@@ -30,14 +30,16 @@ function Main() {
           </Link>
         </nav>
       </Header>
-      <Promo />
-      <NavTab />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
+      <main className="main">
+        <Promo />
+        <NavTab />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 export default Main;

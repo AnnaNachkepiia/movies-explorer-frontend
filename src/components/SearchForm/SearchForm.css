@@ -31,6 +31,9 @@
   color: #a0a0a0;
   padding: 0 0 0 22px;
 }
+.search__form-input:focus{
+  outline: 2px solid #a0a0a0;
+}
 
 .search__form-button {
   border: none;

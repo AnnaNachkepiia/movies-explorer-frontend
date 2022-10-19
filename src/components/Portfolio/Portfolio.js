@@ -33,7 +33,7 @@ function Portfolio() {
           <a
             className="portfolio__link"
             target="blank"
-            href="http://nachkepiia.student.nomorepartiesxyz.ru/"
+            href="https://github.com/AnnaNachkepiia/react-mesto-api-full"
           >
             <p className="portfolio__text">Одностраничное приложение</p>
             <img className="portfolio__arrow" alt="стрелка" src={arrow}></img>

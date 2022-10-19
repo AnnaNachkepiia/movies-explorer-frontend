@@ -42,13 +42,13 @@ function SavedMovies() {
           </Link>
         </nav>
       </Header>
-      <section>
+      <main>
         <SearchForm />
         <Preloader />
         <MoviesCardList>
           <button className="movie__delete" />
         </MoviesCardList>
-      </section>
+      </main>
       <Footer />
     </>
   );

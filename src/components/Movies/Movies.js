@@ -42,7 +42,7 @@ function Movies() {
           </Link>
         </nav>
       </Header>
-      <section>
+      <main>
         <SearchForm />
         <Preloader />
         <MoviesCardList>
@@ -51,7 +51,7 @@ function Movies() {
         <button type="submit" className="movies__button-more">
           <p className="movies__button-text">Ещё</p>
         </button>
-      </section>
+      </main>
       <Footer />
     </>
   );

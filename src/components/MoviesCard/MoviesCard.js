@@ -31,7 +31,7 @@ function MoviesCard(props) {
             <p className="movie__name">33 слова о дизайне</p>
             <p className="movie__duration">1ч 45 мин</p>
           </div>
-          <button className="movie__save movie__save_type_visible"/>
+          <button  type="submit" className="movie__save movie__save_type_visible"/>
         </div>
       </li>
       <li className="movie">
@@ -45,7 +45,7 @@ function MoviesCard(props) {
             <p className="movie__name">33 слова о дизайне</p>
             <p className="movie__duration">1ч 45 мин</p>
           </div>
-          <button className="movie__save movie__save_type_invisible"/>
+          <button type="submit" className="movie__save movie__save_type_invisible"/>
         </div>
       </li>
 
@@ -60,7 +60,7 @@ function MoviesCard(props) {
             <p className="movie__name">33 слова о дизайне</p>
             <p className="movie__duration">1ч 45 мин</p>
           </div>
-          <button className="movie__save movie__save_type_visible"/>
+          <button type="submit" className="movie__save movie__save_type_visible"/>
         </div>
       </li>
       <li className="movie">
@@ -74,7 +74,7 @@ function MoviesCard(props) {
             <p className="movie__name">33 слова о дизайне</p>
             <p className="movie__duration">1ч 45 мин</p>
           </div>
-          <button className="movie__save movie__save_type_invisible"/>
+          <button type="submit" className="movie__save movie__save_type_invisible"/>
         </div>
       </li>
 
@@ -89,7 +89,7 @@ function MoviesCard(props) {
             <p className="movie__name">33 слова о дизайне</p>
             <p className="movie__duration">1ч 45 мин</p>
           </div>
-          <button className="movie__save movie__save_type_visible"/>
+          <button type="submit" className="movie__save movie__save_type_visible"/>
         </div>
       </li>
     </ul>
