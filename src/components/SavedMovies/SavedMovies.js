@@ -46,7 +46,6 @@ function SavedMovies() {
         <SearchForm />
         <Preloader />
         <MoviesCardList>
-          <button className="movie__delete" />
         </MoviesCardList>
       </main>
       <Footer />

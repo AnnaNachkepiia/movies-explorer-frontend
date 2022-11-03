@@ -1,6 +1,6 @@
 import "./AboutMe.css";
 import React from "react";
-import studentsPhoto from "../../images/picStudent.png";
+import studentsPhoto from "../../images/IMG_4332 2.jpeg";
 
 function AboutMe() {
   return (
@@ -10,13 +10,13 @@ function AboutMe() {
       <div className="aboutme__container">
         <div className="aboutme__text-block">
           <h3 className="aboutme__name">Анна Начкепия</h3>
-          <p className="aboutme__subtitle">Фронтенд-разработчик, 30 лет</p>
+          <p className="aboutme__subtitle">Фронтенд-разработчик, 31 год</p>
           <p className="aboutme__text">
-            Я родился и живу в Саратове, закончил факультет экономики СГУ. У
-            меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
-            бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
-            Контур». После того, как прошёл курс по веб-разработке, начал
-            заниматься фриланс-заказами и ушёл с постоянной работы.
+            Я живу в Курортном районе Санкт-Петербурга. Люблю путешествовать и
+            играть в большой теннис. По образованию я дизайнер-ювелир и всегда
+            интересовалась искусством. Закончила курс Яндекс.Практикума по
+            веб-разработке и спешу ворваться в новую профессию. А еще я мама
+            мальчиков-близнецов и они здорово задают темп всех моих дел.
           </p>
           <a
             href="https://github.com/AnnaNachkepiia"

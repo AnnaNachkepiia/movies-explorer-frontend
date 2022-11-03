@@ -2,30 +2,58 @@ import "./Login.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import headerLogo from "../../images/logoHeader.svg";
+import Validation from "../../utils/Validation.js";
 
+function Login({ onLogin }) {
+  const { values, errors, handleChange, isValid } = Validation();
 
-function Login() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    onLogin(values);
+  }
+
   return (
     <section className="login">
-      <img className="login__logo" src={headerLogo} alt="лого"/>
+      <Link to="/">
+        <img className="login__logo" src={headerLogo} alt="лого" />
+      </Link>
       <h2 className="login__title">Рады видеть!</h2>
-      <form className="login__form">
+      <form className="login__form" onSubmit={handleSubmit}>
         <p className="login__input-capture">E-mail</p>
         <input
-          className="login__input"
+          className={`login__input ${
+            !isValid ? "login__input-valid" : "login__input-error"
+          }`}
           type="email"
           name="email"
           id="email"
+          value={values.email || ""}
+          onChange={handleChange}
+          required
         />
+        <span className="login__text-error">{errors.email}</span>
         <p className="login__input-capture">Пароль</p>
         <input
-          className="login__input"
+          className={`login__input ${
+            !isValid ? "login__input-valid" : "login__input-error"
+          }`}
           type="password"
-          name="pasword"
+          name="password"
           id="password"
+          value={values.password || ""}
+          onChange={handleChange}
+          minLength="8"
+          maxLength="30"
+          required
         />
+        <span className="login__text-error">{errors.password}</span>
       </form>
-      <button type="submit" className="login__button-submit">
+      <button
+        type="submit"
+        className={`login__button-submit ${
+          !isValid ? "login__button-active" : "login__button-disabled"
+        }`}
+      >
         Войти
       </button>
       <p className="login__subtitle">

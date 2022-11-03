@@ -39,6 +39,10 @@
 
   }
 } */
+
+.movie__description{
+  width: 90%;
+}
 .movie__picture {
   width: 100%;
   height: 151px;
@@ -90,6 +94,7 @@
   border: none;
   background-image: url(../../images/iconSaveInvisible.svg);
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .movie__save_type_invisible {
   background-color: #f9f9f9;
