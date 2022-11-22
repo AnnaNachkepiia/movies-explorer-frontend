@@ -7,9 +7,14 @@ function NavTab() {
   return (
     <section className="nav-tab">
       <ul className="nav-tab__nav">
-        <li className="nav-tab__link">О проекте</li>
-        <li className="nav-tab__link">Технологии</li>
-        <li className="nav-tab__link">Студент</li>
+        <li className="nav-tab__item">
+        <a className="nav-tab__link" href='#aboutproject' rel='noreferrer' >О проекте</a>
+       </li>
+       <li className="nav-tab__item">
+        <a className="nav-tab__link" href='#techs' rel='noreferrer' >Технологии</a>
+       </li><li className="nav-tab__item">
+        <a className="nav-tab__link" href='#aboutme' rel='noreferrer' >Студент</a>
+       </li>
       </ul>
     </section>
   );

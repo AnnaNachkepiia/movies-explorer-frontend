@@ -15,7 +15,7 @@ return (
       id="search"
       className="search__form-input"
       placeholder="Фильм"
-      minLength={2}
+      minLength={1}
       value={searchQuery}
       onChange={handleChange}
     />

@@ -1,5 +1,5 @@
-const BASE_URL = "https://api.nachkepia.movies-exp.nomoredomains.icu";
-const token = `${localStorage.getItem("token")}`;
+const BASE_URL = "http://api.nachkepia.movies-exp.nomoredomains.icu";
+// const token = `${localStorage.getItem("token")}`;
 
 function checkRes(res) {
   if (res.ok) {
@@ -36,9 +36,13 @@ export const login = ({ email, password }) => {
 };
 
 export const getContent = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
-    headers: getHeaders(),
+    return fetch(`${BASE_URL}/users/me`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
   }).then(checkRes);
 };
 
@@ -46,7 +50,7 @@ const getHeaders = () => {
   return {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
   };
 };
 export const getUserData = () => {
@@ -69,17 +73,19 @@ export const editUserData = (data) => {
   }).then(checkRes);
 };
 
-export const getSavedMovies = () => {
+export const getSavedMovies = (data) => {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: getHeaders(),
     credentials: "include",
+
+
   }).then(checkRes);
 };
 
 export const saveMovie = (data) => {
   return fetch(`${BASE_URL}/movies`, {
-    method: "GET",
+    method: "POST",
     headers: getHeaders(),
     credentials: "include",
     body: JSON.stringify({
@@ -100,8 +106,8 @@ export const saveMovie = (data) => {
   }).then(checkRes);
 };
 
-export const deleteMovie = () => {
-  return fetch(`${BASE_URL}/movies`, {
+export const deleteMovie = (movieId) => {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: "DELETE",
     headers: getHeaders(),
     credentials: "include",

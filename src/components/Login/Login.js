@@ -22,7 +22,7 @@ function Login({ onLogin }) {
         <p className="login__input-capture">E-mail</p>
         <input
           className={`login__input ${
-            !isValid ? "login__input-valid" : "login__input-error"
+            isValid ? "login__input-valid" : "login__input-error"
           }`}
           type="email"
           name="email"
@@ -35,7 +35,7 @@ function Login({ onLogin }) {
         <p className="login__input-capture">Пароль</p>
         <input
           className={`login__input ${
-            !isValid ? "login__input-valid" : "login__input-error"
+            isValid ? "login__input-valid" : "login__input-error"
           }`}
           type="password"
           name="password"
@@ -47,21 +47,22 @@ function Login({ onLogin }) {
           required
         />
         <span className="login__text-error">{errors.password}</span>
+
+        <button
+          type="submit"
+          className={`login__button-submit ${
+            isValid ? "login__button-active" : "login__button-disabled"
+          }`}
+        >
+          Войти
+        </button>
+        <p className="login__subtitle">
+          Ещё не зарегистрированы?
+          <Link to="/signup" className="login__link">
+            Регистрация
+          </Link>
+        </p>
       </form>
-      <button
-        type="submit"
-        className={`login__button-submit ${
-          !isValid ? "login__button-active" : "login__button-disabled"
-        }`}
-      >
-        Войти
-      </button>
-      <p className="login__subtitle">
-        Ещё не зарегистрированы?
-        <Link to="/signup" className="login__link">
-          Регистрация
-        </Link>
-      </p>
     </section>
   );
 }

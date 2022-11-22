@@ -1,6 +1,6 @@
 import "./SavedMovies.css";
 import "../Header/Header.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
@@ -10,7 +10,64 @@ import icon from "../../images/icon-profile.svg";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
-function SavedMovies() {
+function SavedMovies({ savedMovies, handleDeleteMovie }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [findMovies, setFindMovies] = useState([]);
+  const [checked, setChecked] = useState(false);
+  const [error, setError] = useState("");
+  const [shortMovies, setShortMovies] = useState([]);
+  const [found, setFound] = useState(true);
+
+  console.log(savedMovies.image);
+
+  useEffect(
+    (data) => {
+      setFindMovies(savedMovies);
+      console.log(savedMovies.image);
+    },
+    [savedMovies]
+  );
+
+  useEffect(() => {
+    if (checked) {
+      const shortMovies = findMovies.filter((movie) => {
+        return movie.duration <= 40;
+      });
+
+      setShortMovies(shortMovies);
+    }
+  }, [checked, findMovies, setShortMovies]);
+
+  useEffect(() => {
+    if (isLoading) {
+      const searchResults = savedMovies.filter((movie) => {
+        const movieName = movie.nameRU.toLowerCase();
+        return movieName.includes(searchQuery.toLowerCase());
+      });
+
+      if (searchResults.length < 1) {
+        setFound(false);
+      } else {
+        setFindMovies(searchResults);
+        setFound(true);
+      }
+    }
+    setTimeout(() => setIsLoading(false), 2000);
+  }, [isLoading, savedMovies, searchQuery, setFindMovies]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    searchQuery ? setIsLoading(true) : setError("Введите ключевое слово");
+  }
+  function handleToogleCheckBox() {
+    setChecked(!checked);
+  }
+
+  function handleChange(e) {
+    setSearchQuery(e.target.value);
+  }
+
   return (
     <>
       <Navigation />
@@ -43,10 +100,24 @@ function SavedMovies() {
         </nav>
       </Header>
       <main>
-        <SearchForm />
-        <Preloader />
-        <MoviesCardList>
-        </MoviesCardList>
+        <SearchForm
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          searchQuery={searchQuery}
+          handleToogleCheckBox={handleToogleCheckBox}
+          checked={checked}
+        />
+        {isLoading ? (
+          <Preloader />
+        ) : found ? (
+          <MoviesCardList
+            movies={checked ? shortMovies : findMovies}
+            savedMovies={savedMovies}
+            handleDeleteMovie={handleDeleteMovie}
+          />
+        ) : (
+          <p className="movie__search-message">ничего не найдено</p>
+        )}
       </main>
       <Footer />
     </>

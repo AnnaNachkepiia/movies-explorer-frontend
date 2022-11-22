@@ -10,73 +10,76 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
 import icon from "../../images/icon-profile.svg";
 import Navigation from "../Navigation/Navigation";
 
-function Movies({
-  initialMovies,
-  handleSubmit,
-  savedMovies,
-  handleSaveMovie,
-  handleDeleteMovie,
-}) {
+function Movies({ initialMovies, savedMovies, handleSaveMovie, handleDeleteMovie }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [checked, setChecked] = useState(false);
-  const [isMovieSaved, setIsMovieSaved] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [findMovies, setFindMovies] = useState([]);
-  const [notFound, setNotFound] = useState(false);
-  const [error, setError] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [error, setError] = useState('');
   const [shortMovies, setShortMovies] = useState([]);
-  const [count, setCount] = useState(6);
+  const [found, setFound] = useState(true);
+  const [count, setCount] = useState(12);
+  const width = window.innerWidth;
+
 
   useEffect(() => {
     if (isLoading) {
-      const searchResults = initialMovies.filter((movie) => {
-        const movieName =
-          movie.nameRU.toLowerCase() && movie.nameEN.toLowerCase();
-        return movieName.includes(searchQuery.toLowerCase());
-      });
-
-      if (searchResults.length < 1) {
-        setNotFound(true);
-      } else {
-        setFindMovies(searchResults);
-        localStorage.setItem("movies", JSON.stringify(searchResults));
-        setNotFound(false);
-      }
+      JSON.parse(localStorage.getItem("searchMovies"));
+      searchMovie(searchQuery)
     }
     setTimeout(() => setIsLoading(false), 2000);
   }, [isLoading, initialMovies, searchQuery, setFindMovies]);
 
+
+
+function searchMovie (query) {
+  const searchResults = initialMovies.filter((movie) => {
+    const movieName = movie.nameRU.toLowerCase();
+
+    return movieName.includes(query.toLowerCase());
+  });
+  if (searchResults.length < 1) {
+    setFound(false);
+  } else {
+    setFindMovies(searchResults);
+    setFound(true);
+    localStorage.setItem('searchMovies' ,JSON.stringify(searchResults))
+  }
+}
+useEffect(() => {
+  if (localStorage.getItem('searchMovies')) {
+    const movies = JSON.parse(localStorage.getItem('searchMovies'));
+    setFindMovies(movies);
+  }
+}, []);
+
+useEffect(() => {
+  if (width >= 1024) {
+    setCount(12);
+  }
+  if (width < 1024 && width >= 800) {
+    setCount(8);
+  }
+  if (width < 800) {
+    setCount(5);
+  }
+}, [width]);
+
+  useEffect(() => {
+    setError('');
+  }, [searchQuery]);
+
   useEffect(() => {
     if (checked) {
-      const shorts = findMovies.filter((movie) => {
+      const shortMovies = findMovies.filter((movie) => {
         return movie.duration <= 40;
       });
-      setShortMovies(shorts);
+
+      setShortMovies(shortMovies);
     }
   }, [checked, findMovies, setShortMovies]);
 
-
-//   useEffect(() => {
-//     if (localStorage.getItem("movies")) {
-//       const movies = JSON.parse(localStorage.getItem("movies"));
-//       setFindMovies(movies);
-//     }
-//   }, []);
-
-// useEffect(() => {
-//   if(checked){
-//     const shorts = JSON.parse(localStorage.getItem('checked'))
-//     setShortMovies(shorts)
-//   }
-// }, [])
-
-useEffect(() => {
-localStorage.setItem('checked', checked)
-}, [checked])
-
-  // useEffect(() => {
-  //   setError("");
-  // }, [searchQuery]);
+  
 
   function handleChange(e) {
     setSearchQuery(e.target.value);
@@ -84,32 +87,21 @@ localStorage.setItem('checked', checked)
 
   function handleSubmit(e) {
     e.preventDefault();
-    searchQuery ? setIsLoading(true) : setError("ошибка");
+    searchQuery ? setIsLoading(true) : setError('Введите ключевое слово');
   }
 
-  function handleToogleCheckBox() {
+   function handleToogleCheckBox() {
     setChecked(!checked);
+    localStorage.setItem('savedChecked', !checked);
   }
 
   function handleMoreMovies() {
-    setCount(count + 3);
-  }
-
-  const renderMovies = () => {
-    if (notFound) {
-      return <p className="movie__search-message">ничего не найдено</p>;
+    if (width >= 1024) {
+      setCount(count + 3);
+    } else {
+      setCount(count + 2);
     }
-    return (
-      <MoviesCardList
-        movies={checked ? shortMovies : findMovies}
-        savedMovies={savedMovies}
-        count={count}
-        handleMoreMovies={handleMoreMovies}
-        handleSaveMovie={handleSaveMovie}
-        handleDeleteMovie={handleDeleteMovie}
-      />
-    );
-  };
+  }
 
   return (
     <>
@@ -150,7 +142,20 @@ localStorage.setItem('checked', checked)
           handleToogleCheckBox={handleToogleCheckBox}
           checked={checked}
         />
-        {isLoading ? <Preloader /> : renderMovies()}
+        {isLoading ? (
+          <Preloader />
+        ) : found ? (
+          <MoviesCardList
+            movies={checked ? shortMovies : findMovies}
+            savedMovies={savedMovies}
+            count={count}
+            handleMoreMovies={handleMoreMovies}
+            handleSaveMovie={handleSaveMovie}
+            handleDeleteMovie={handleDeleteMovie}
+          />
+        ) : (
+          <p className="movie__search-message">Ничего не найдено</p>
+        )}
       </main>
       <Footer />
     </>

@@ -9,16 +9,10 @@ function MoviesCardList({
   count,
   handleMoreMovies,
   handleSaveMovie,
-  handleDeleteMovie
+  handleDeleteMovie,
 }) {
-  // const [renderedMovies, setRenderedMovies] = useState(0)
-
-  const location = useLocation();
-  const pathWithMovies = location.pathname === "/movies";
-
-
   let renderCards = movies.slice(0, count);
-  // const elseButton = movies.length > 0 && movies.length > index;
+
   return (
     <section className="movies">
       <div className="movies__container">
@@ -31,19 +25,20 @@ function MoviesCardList({
               handleSaveMovie={handleSaveMovie}
               handleDeleteMovie={handleDeleteMovie}
             />
-          ))} 
+          ))}
         </ul>
       </div>
       {movies.length > count ? (
-      <button
-        type="button"
-        className="movies__button-more"
-        onClick={handleMoreMovies}
-      >
-        <p className="movies__button-text">Ещё</p>
-      </button>
-       ) : ('')
-}
+        <button
+          type="button"
+          className="movies__button-more"
+          onClick={handleMoreMovies}
+        >
+          <p className="movies__button-text">Ещё</p>
+        </button>
+      ) : (
+        ""
+      )}
     </section>
   );
 }
