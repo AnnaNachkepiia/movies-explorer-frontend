@@ -1,5 +1,5 @@
 import "./Profile.css";
-import '../Login/Login.css'
+import "../Login/Login.css";
 import React, { useEffect, useState, useContext } from "react";
 import Header from "../Header/Header";
 import Validation from "../../utils/Validation";
@@ -7,7 +7,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { NAME_REGEX } from "../../utils/Consts";
 
 function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
-  const { values, handleChange, isValid, resetForm ,errors} = Validation();
+  const { values, handleChange, isValid, resetForm, errors } = Validation();
   const currentUser = useContext(CurrentUserContext);
   const newValue =
     currentUser.name !== values.name || currentUser.email !== values.email;
@@ -64,7 +64,6 @@ function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
             />
           </div>
           <span className="login__text-error">{errors.email}</span>
-
         </div>
         <button
           disabled={!isValid}
