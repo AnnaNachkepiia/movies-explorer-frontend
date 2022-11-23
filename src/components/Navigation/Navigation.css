@@ -1,6 +1,9 @@
 .navigation {
-  display: none;
-  position: fixed;
+visibility: hidden; 
+}
+.navigation_is-opened {
+visibility: visible; 
+ position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -47,8 +50,8 @@
   padding-top: 159px;
   justify-content: space-between;
 }
-.navigation__links:hover {
-opacity: 0.5;
+.navigation__link:hover {
+  opacity: 0.5;
 }
 @media screen and (max-width: 520px) {
   .navigation__links {
@@ -70,9 +73,9 @@ opacity: 0.5;
     margin-bottom: 24px;
   }
 }
-.navigation__link-checked {
+/* .navigation__link-checked {
   text-decoration: underline;
-}
+} */
 .navigation__button-profile {
   text-decoration: none;
   color: #000;

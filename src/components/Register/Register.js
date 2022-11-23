@@ -11,14 +11,7 @@ function Register({ onRegister }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onRegister(
-      values
-      //   {
-      //   name: values.name,
-      //   email: values.email,
-      //   password: values.password,
-      // }
-    );
+    onRegister(values);
   }
 
   return (

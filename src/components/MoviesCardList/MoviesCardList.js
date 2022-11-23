@@ -11,13 +11,13 @@ function MoviesCardList({
   handleSaveMovie,
   handleDeleteMovie,
 }) {
-  let renderCards = movies.slice(0, count);
+  const shownMovies = movies.slice(0, count);
 
   return (
     <section className="movies">
       <div className="movies__container">
         <ul className="movies__cardlist">
-          {renderCards.map((movie) => (
+          {shownMovies.map((movie) => (
             <MoviesCard
               key={movie.id || movie._id}
               movie={movie}

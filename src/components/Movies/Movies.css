@@ -14,6 +14,13 @@
 .movies__button-more:hover {
   opacity: 0.5;
 }
+.movie__search-message{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+}
 
   @media screen and (max-width: 419px) {
   .movies__button-more {

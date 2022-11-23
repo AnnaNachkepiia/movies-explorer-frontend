@@ -10,24 +10,17 @@ import icon from "../../images/icon-profile.svg";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
-function SavedMovies({ savedMovies, handleDeleteMovie }) {
+function SavedMovies({ savedMovies, handleDeleteMovie, loggedIn, openMenu }) {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [findMovies, setFindMovies] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [error, setError] = useState("");
   const [shortMovies, setShortMovies] = useState([]);
-  const [found, setFound] = useState(true);
+  const [isMoviesFound, setIsMoviesFound] = useState(true);
 
-  console.log(savedMovies.image);
-
-  useEffect(
-    (data) => {
-      setFindMovies(savedMovies);
-      console.log(savedMovies.image);
-    },
-    [savedMovies]
-  );
+  useEffect(() => {
+    setFindMovies(savedMovies);
+  }, [savedMovies]);
 
   useEffect(() => {
     if (checked) {
@@ -47,10 +40,10 @@ function SavedMovies({ savedMovies, handleDeleteMovie }) {
       });
 
       if (searchResults.length < 1) {
-        setFound(false);
+        setIsMoviesFound(false);
       } else {
         setFindMovies(searchResults);
-        setFound(true);
+        setIsMoviesFound(true);
       }
     }
     setTimeout(() => setIsLoading(false), 2000);
@@ -58,7 +51,7 @@ function SavedMovies({ savedMovies, handleDeleteMovie }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    searchQuery ? setIsLoading(true) : setError("Введите ключевое слово");
+    setIsLoading(true);
   }
   function handleToogleCheckBox() {
     setChecked(!checked);
@@ -70,35 +63,7 @@ function SavedMovies({ savedMovies, handleDeleteMovie }) {
 
   return (
     <>
-      <Navigation />
-      <Header className="header ">
-        <button type="button" className="header__menu-button" />
-        <nav className="header__navigation header__navigation_type_user">
-          <Link
-            to="/movies"
-            className="header__button header__button_type_movies"
-          >
-            Фильмы
-          </Link>
-          <Link
-            to="/saved-movies"
-            className="header__button header__button_type_saved-movies"
-          >
-            Сохранённые фильмы
-          </Link>
-          <Link
-            to="/profile"
-            className="header__button header__button_type_profile"
-          >
-            <img
-              className="header__profile-icon"
-              alt="иконка профиль"
-              src={icon}
-            ></img>
-            <p className="header__profile-button-name">Аккаунт</p>
-          </Link>
-        </nav>
-      </Header>
+      <Header loggedIn={loggedIn} openMenu={openMenu} />
       <main>
         <SearchForm
           handleSubmit={handleSubmit}
@@ -109,7 +74,7 @@ function SavedMovies({ savedMovies, handleDeleteMovie }) {
         />
         {isLoading ? (
           <Preloader />
-        ) : found ? (
+        ) : isMoviesFound ? (
           <MoviesCardList
             movies={checked ? shortMovies : findMovies}
             savedMovies={savedMovies}

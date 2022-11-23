@@ -1,20 +1,21 @@
 import React from "react";
-import Success from "../images/Success.svg";
-import Error from "../images/Error.svg";
+import './InfoTooltip.css'
+import Success from "../../images/Success.svg";
+import Error from "../../images/Error.svg";
 
-function InfoTooltip({ isOpen, onClose, onRegisterSuccess, registerInfo }) {
+function InfoTooltip({ isOpen, onClose, onSuccess, tooltipMessage }) {
   return (
     <section
-      className={`popup popup_type_register ${isOpen && "popup_is-opened"}`}
+      className={`popup ${isOpen && "popup_is-opened"}`}
     >
       <div className="popup__container">
         <div className="register">
           <img
             className="register__icon"
-            src={onRegisterSuccess ? Success : Error}
-            alt={onRegisterSuccess ? "Успешно!" : "Что-то пошло не так"}
+            src={onSuccess ? Success : Error}
+            alt={onSuccess ? "Успешно!" : "Что-то пошло не так"}
           />
-          <p className="register__description">{registerInfo}</p>
+          <p className="register__description">{tooltipMessage}</p>
         </div>
         <button
           onClick={onClose}

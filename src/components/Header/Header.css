@@ -150,6 +150,8 @@
   cursor: pointer;
   position: absolute;
   right: 70px;
+  background-color: transparent;
+
 }
 @media screen and (max-width: 767px) {
   .header__menu-button {

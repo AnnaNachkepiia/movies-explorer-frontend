@@ -8,15 +8,16 @@ function MoviesCard({
   handleSaveMovie,
   handleDeleteMovie,
 }) {
-  const imgUrl = `${"https://api.nomoreparties.co"}${movie.image.url}`;
   const savedMovie = savedMovies.find((i) => i.movieId === movie.id);
   const location = useLocation();
-  const pathMovies = ["/movies"];
-  const path = pathMovies.includes(location.pathname);
+  const pathMovies = location.pathname === "/movies";
+  const imgUrl = pathMovies
+    ? `${"https://api.nomoreparties.co"}${movie.image.url}`
+    : `${movie.image}`;
   const buttonSaveClassName = `movie__save ${
     savedMovie ? "movie__save_type_visible" : "movie__save_type_invisible"
   }`;
-
+  
   function handleToogleClick() {
     if (savedMovie) {
       handleDeleteMovie(savedMovie);
@@ -54,7 +55,7 @@ function MoviesCard({
           <p className="movie__name">{movie.nameRU}</p>
           <p className="movie__duration">{movieDuration(movie.duration)}</p>
         </div>
-        {path ? (
+        {pathMovies ? (
           <button
             type="submit"
             className={buttonSaveClassName}

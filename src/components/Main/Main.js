@@ -11,25 +11,11 @@ import Techs from "../Techs/Techs.js";
 import AboutMe from "../AboutMe/AboutMe.js";
 import Portfolio from "../Portfolio/Portfolio.js";
 
-function Main() {
+function Main({ loggedIn, openMenu }) {
   return (
     <>
-      <Header className="header header_type_promo">
-        <nav className="header__navigation header__navigation_type_promo">
-          <Link
-            to="/signup"
-            className="header__button header__button_type_signup"
-          >
-            Регистрация
-          </Link>
-          <Link
-            to="/signin"
-            className="header__button header__button_type_signin"
-          >
-            Войти
-          </Link>
-        </nav>
-      </Header>
+      <Header loggedIn={loggedIn} openMenu={openMenu} />
+
       <main className="main">
         <Promo />
         <NavTab />

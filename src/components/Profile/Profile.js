@@ -1,72 +1,31 @@
 import "./Profile.css";
+import '../Login/Login.css'
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import icon from "../../images/icon-profile.svg";
 import Header from "../Header/Header";
-import Navigation from "../Navigation/Navigation";
 import Validation from "../../utils/Validation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { NAME_REGEX } from "../../utils/Consts";
 
-function Profile({ handleUpdateUser, signOut }) {
-  const { values, handleChange, isValid, resetForm } = Validation();
+function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
+  const { values, handleChange, isValid, resetForm ,errors} = Validation();
   const currentUser = useContext(CurrentUserContext);
-  const [lastValues, setLastValues] = useState(false);
+  const newValue =
+    currentUser.name !== values.name || currentUser.email !== values.email;
 
   useEffect(() => {
-    if (currentUser) {
-      resetForm(currentUser);
-    }
-  }, [currentUser, resetForm]);
+    resetForm(currentUser);
+  }, [resetForm, currentUser]);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    handleUpdateUser(values);
+    if (isValid && newValue) {
+      handleUpdateUser(values);
+    }
   }
-
-  // useEffect(() => {
-  //   if (
-  //     isValid &&
-  //     currentUser.name === values.name &&
-  //     currentUser.email === values.email
-  //   ) {
-  //     setLastValues(true);
-  //   } else {
-  //     setLastValues(false);
-  //   }
-  // }, [values]);
 
   return (
     <>
-      <Navigation />
-      <Header className="header ">
-        <button type="button" className="header__menu-button" />
-        <nav className="header__navigation header__navigation_type_user">
-          <Link
-            to="/movies"
-            className="header__button header__button_type_movies"
-          >
-            Фильмы
-          </Link>
-          <Link
-            to="/saved-movies"
-            className="header__button header__button_type_saved-movies"
-          >
-            Сохранённые фильмы
-          </Link>
-          <Link
-            to="/profile"
-            className="header__button header__button_type_profile"
-          >
-            <img
-              className="header__profile-icon"
-              alt="иконка профиль"
-              src={icon}
-            ></img>
-            <p className="header__profile-button-name">Аккаунт</p>
-          </Link>
-        </nav>
-      </Header>
+      <Header loggedIn={loggedIn} openMenu={openMenu} />
       <form className="profile" onSubmit={handleSubmit}>
         <h2 className="profile__title">Привет, {currentUser.name}!</h2>
         <div className="profile__info">
@@ -86,6 +45,8 @@ function Profile({ handleUpdateUser, signOut }) {
               required
             />
           </div>
+          <span className="login__text-error">{errors.name}</span>
+
           <div className="profile__line" />
           <div className="profile__string">
             <label className="profile__input-label">Email</label>
@@ -102,6 +63,8 @@ function Profile({ handleUpdateUser, signOut }) {
               required
             />
           </div>
+          <span className="login__text-error">{errors.email}</span>
+
         </div>
         <button
           disabled={!isValid}

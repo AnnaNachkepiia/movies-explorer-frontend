@@ -1,73 +1,71 @@
 import "./Movies.css";
 import "../Header/Header.css";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm.js";
 import Preloader from "../Preloader/Preloader.js";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
-import icon from "../../images/icon-profile.svg";
-import Navigation from "../Navigation/Navigation";
 
-function Movies({ initialMovies, savedMovies, handleSaveMovie, handleDeleteMovie }) {
+function Movies({
+  initialMovies,
+  savedMovies,
+  handleSaveMovie,
+  handleDeleteMovie,
+  loggedIn,
+  openMenu,
+}) {
   const [isLoading, setIsLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [findMovies, setFindMovies] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [error, setError] = useState('');
   const [shortMovies, setShortMovies] = useState([]);
-  const [found, setFound] = useState(true);
+  const [isMoviesFound, setIsMoviesFound] = useState(true);
   const [count, setCount] = useState(12);
   const width = window.innerWidth;
-
 
   useEffect(() => {
     if (isLoading) {
       JSON.parse(localStorage.getItem("searchMovies"));
-      searchMovie(searchQuery)
+      searchMovie(searchQuery);
     }
     setTimeout(() => setIsLoading(false), 2000);
   }, [isLoading, initialMovies, searchQuery, setFindMovies]);
 
+  function searchMovie(query) {
+    const searchResults = initialMovies.filter((movie) => {
+      const movieName = movie.nameRU.toLowerCase();
 
-
-function searchMovie (query) {
-  const searchResults = initialMovies.filter((movie) => {
-    const movieName = movie.nameRU.toLowerCase();
-
-    return movieName.includes(query.toLowerCase());
-  });
-  if (searchResults.length < 1) {
-    setFound(false);
-  } else {
-    setFindMovies(searchResults);
-    setFound(true);
-    localStorage.setItem('searchMovies' ,JSON.stringify(searchResults))
+      return movieName.includes(query.toLowerCase());
+    });
+    if (searchResults.length < 1) {
+      setIsMoviesFound(false);
+    } else {
+      setFindMovies(searchResults);
+      setIsMoviesFound(true);
+      localStorage.setItem("searchMovies", JSON.stringify(searchResults));
+    }
   }
-}
-useEffect(() => {
-  if (localStorage.getItem('searchMovies')) {
-    const movies = JSON.parse(localStorage.getItem('searchMovies'));
-    setFindMovies(movies);
-  }
-}, []);
-
-useEffect(() => {
-  if (width >= 1024) {
-    setCount(12);
-  }
-  if (width < 1024 && width >= 800) {
-    setCount(8);
-  }
-  if (width < 800) {
-    setCount(5);
-  }
-}, [width]);
+  useEffect(() => {
+    if (localStorage.getItem("searchMovies")) {
+      const movies = JSON.parse(localStorage.getItem("searchMovies"));
+      setFindMovies(movies);
+    }
+  }, []);
 
   useEffect(() => {
-    setError('');
-  }, [searchQuery]);
+    if (width >= 1024) {
+      setCount(12);
+    }
+    if (width < 1024 && width >= 800) {
+      setCount(8);
+    }
+    if (width < 800) {
+      setCount(5);
+    }
+  }, [width]);
+
+
 
   useEffect(() => {
     if (checked) {
@@ -79,20 +77,18 @@ useEffect(() => {
     }
   }, [checked, findMovies, setShortMovies]);
 
-  
-
   function handleChange(e) {
     setSearchQuery(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    searchQuery ? setIsLoading(true) : setError('Введите ключевое слово');
+    setIsLoading(true);
   }
 
-   function handleToogleCheckBox() {
+  function handleToogleCheckBox() {
     setChecked(!checked);
-    localStorage.setItem('savedChecked', !checked);
+    localStorage.setItem("savedChecked", !checked);
   }
 
   function handleMoreMovies() {
@@ -105,35 +101,7 @@ useEffect(() => {
 
   return (
     <>
-      <Navigation />
-      <Header className="header ">
-        <button type="button" className="header__menu-button" />
-        <nav className="header__navigation header__navigation_type_user">
-          <Link
-            to="/movies"
-            className="header__button header__button_type_movies"
-          >
-            Фильмы
-          </Link>
-          <Link
-            to="/saved-movies"
-            className="header__button header__button_type_saved-movies"
-          >
-            Сохранённые фильмы
-          </Link>
-          <Link
-            to="/profile"
-            className="header__button header__button_type_profile"
-          >
-            <img
-              className="header__profile-icon"
-              alt="иконка профиль"
-              src={icon}
-            ></img>
-            <p className="header__profile-button-name">Аккаунт</p>
-          </Link>
-        </nav>
-      </Header>
+      <Header loggedIn={loggedIn} openMenu={openMenu} />
       <main>
         <SearchForm
           handleSubmit={handleSubmit}
@@ -144,7 +112,7 @@ useEffect(() => {
         />
         {isLoading ? (
           <Preloader />
-        ) : found ? (
+        ) : isMoviesFound ? (
           <MoviesCardList
             movies={checked ? shortMovies : findMovies}
             savedMovies={savedMovies}

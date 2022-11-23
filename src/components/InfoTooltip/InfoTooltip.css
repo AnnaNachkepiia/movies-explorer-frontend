@@ -7,15 +7,14 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.popup_type_register{
-    display: none;
-    /* min-width: 330px;
+    visibility: hidden;
+    min-width: 330px;
     min-height: 430px;
     display: flex;
-    flex-direction: column; */
+    flex-direction: column;
+    z-index: 10;
 }
+
 .popup_is-opened {
     display: flex;
     visibility: visible;
@@ -45,10 +44,13 @@
 }
 .register__icon{
     margin: 60px auto 32px;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
 }
 .register__description {
-    font-weight: 900;
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 17px;
     line-height: 29px;
     text-align: center;
     color: #000000;
@@ -59,7 +61,7 @@
   .popup__close {
     width: 32px;
     height: 32px;
-    background-image: url(../../../images/CloseIcon.svg);
+    background-image: url(../../images/CloseIcon.svg);
     background-repeat: no-repeat;
     background-color: transparent;
     background-position: center;
