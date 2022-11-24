@@ -8,4 +8,4 @@ https://disk.yandex.ru/d/bcRo0r3nTCJGnQ
 https://nachkepia.movies-explorer.nomoredomains.icu/
 
 ## Ссылка на PullRequest
-https://github.com/AnnaNachkepiia/movies-explorer-frontend/compare/main...level-3
+https://github.com/AnnaNachkepiia/movies-explorer-frontend/pull/2
