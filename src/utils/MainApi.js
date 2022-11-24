@@ -1,4 +1,4 @@
-const BASE_URL = "http://api.nachkepia.movies-exp.nomoredomains.icu";
+const BASE_URL = "https://api.nachkepia.movies-exp.nomoredomains.icu";
 // const token = `${localStorage.getItem("token")}`;
 
 function checkRes(res) {
