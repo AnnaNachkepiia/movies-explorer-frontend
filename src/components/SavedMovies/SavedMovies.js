@@ -1,13 +1,10 @@
 import "./SavedMovies.css";
 import "../Header/Header.css";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
-import icon from "../../images/icon-profile.svg";
-import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
 function SavedMovies({ savedMovies, handleDeleteMovie, loggedIn, openMenu }) {
@@ -27,18 +24,15 @@ function SavedMovies({ savedMovies, handleDeleteMovie, loggedIn, openMenu }) {
       const shortMovies = findMovies.filter((movie) => {
         return movie.duration <= 40;
       });
-
       setShortMovies(shortMovies);
     }
   }, [checked, findMovies, setShortMovies]);
-
   useEffect(() => {
     if (isLoading) {
       const searchResults = savedMovies.filter((movie) => {
         const movieName = movie.nameRU.toLowerCase();
         return movieName.includes(searchQuery.toLowerCase());
       });
-
       if (searchResults.length < 1) {
         setIsMoviesFound(false);
       } else {
@@ -47,7 +41,7 @@ function SavedMovies({ savedMovies, handleDeleteMovie, loggedIn, openMenu }) {
       }
     }
     setTimeout(() => setIsLoading(false), 2000);
-  }, [isLoading, savedMovies, searchQuery, setFindMovies]);
+  }, [isLoading, setFindMovies, savedMovies, searchQuery]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -56,11 +50,9 @@ function SavedMovies({ savedMovies, handleDeleteMovie, loggedIn, openMenu }) {
   function handleToogleCheckBox() {
     setChecked(!checked);
   }
-
   function handleChange(e) {
     setSearchQuery(e.target.value);
   }
-
   return (
     <>
       <Header loggedIn={loggedIn} openMenu={openMenu} />
@@ -77,7 +69,7 @@ function SavedMovies({ savedMovies, handleDeleteMovie, loggedIn, openMenu }) {
         ) : isMoviesFound ? (
           <MoviesCardList
             movies={checked ? shortMovies : findMovies}
-            savedMovies={savedMovies}
+            savedMovies={findMovies}
             handleDeleteMovie={handleDeleteMovie}
           />
         ) : (

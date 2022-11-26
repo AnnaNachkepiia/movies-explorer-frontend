@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import headerLogo from "../../images/logoHeader.svg";
 import Validation from "../../utils/Validation.js";
+import { EMAIL_REGEX } from "../../utils/Consts";
 
 function Login({ onLogin }) {
   const { values, errors, handleChange, isValid } = Validation();
@@ -29,6 +30,7 @@ function Login({ onLogin }) {
           id="email"
           value={values.email || ""}
           onChange={handleChange}
+          pattern={EMAIL_REGEX}
           required
         />
         <span className="login__text-error">{errors.email}</span>

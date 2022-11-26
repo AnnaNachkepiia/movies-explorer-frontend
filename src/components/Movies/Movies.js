@@ -54,31 +54,44 @@ function Movies({
   }, []);
 
   useEffect(() => {
+    if (localStorage.getItem("checked")) {
+      const checked = JSON.parse(localStorage.getItem("checked"));
+      setChecked(checked);
+    }
+  }, []);
+  useEffect(() => {
+    if (localStorage.getItem("searchQuery")) {
+      const query = JSON.parse(localStorage.getItem("searchQuery"));
+      setSearchQuery(query);
+    }
+  }, []);
+
+
+
+  useEffect(() => {
     if (width >= 1024) {
       setCount(12);
     }
-    if (width < 1024 && width >= 800) {
+    if (width < 1024 && width >= 767) {
       setCount(8);
     }
-    if (width < 800) {
+    if (width < 767) {
       setCount(5);
     }
-  }, [width]);
-
-
+  }, []);
 
   useEffect(() => {
     if (checked) {
       const shortMovies = findMovies.filter((movie) => {
         return movie.duration <= 40;
       });
-
       setShortMovies(shortMovies);
     }
   }, [checked, findMovies, setShortMovies]);
 
   function handleChange(e) {
     setSearchQuery(e.target.value);
+    localStorage.setItem("searchQuery", JSON.stringify(e.target.value));
   }
 
   function handleSubmit(e) {
@@ -88,11 +101,13 @@ function Movies({
 
   function handleToogleCheckBox() {
     setChecked(!checked);
-    localStorage.setItem("savedChecked", !checked);
+    localStorage.setItem("checked", JSON.stringify(!checked));
   }
 
   function handleMoreMovies() {
-    if (width >= 1024) {
+    if (width >= 1280) {
+      setCount(count + 4);
+    } else if (width >= 1024) {
       setCount(count + 3);
     } else {
       setCount(count + 2);

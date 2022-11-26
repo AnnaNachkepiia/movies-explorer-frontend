@@ -43,7 +43,9 @@
     line-height: 15px;
   }
 }
-.not-found__link {
+.not-found__back {
+  background: none;
+  border: none;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -52,13 +54,16 @@
   text-decoration: none;
   margin-top: 184px;
 }
+.not-found__back:hover{
+  opacity: 0.5;
+}
 @media screen and (max-width: 767px) {
-  .not-found__link {
+  .not-found__back {
     margin-top: 208px;
   }
 }
 @media screen and (max-width: 419px) {
-  .not-found__link {
+  .not-found__back {
     font-size: 12px;
     line-height: 15px;
     margin-top: 284px;

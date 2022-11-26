@@ -50,9 +50,7 @@ visibility: visible;
   padding-top: 159px;
   justify-content: space-between;
 }
-.navigation__link:hover {
-  opacity: 0.5;
-}
+
 @media screen and (max-width: 520px) {
   .navigation__links {
     padding-top: 144px;
@@ -68,14 +66,17 @@ visibility: visible;
   color: #000000;
   margin: 0 auto 28px;
 }
+.navigation__link:hover {
+  opacity: 0.5;
+}
 @media screen and (max-width: 520px) {
   .navigation__link {
     margin-bottom: 24px;
   }
 }
-/* .navigation__link-checked {
+.navigation__link-checked {
   text-decoration: underline;
-} */
+}
 .navigation__button-profile {
   text-decoration: none;
   color: #000;

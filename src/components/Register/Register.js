@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import headerLogo from "../../images/logoHeader.svg";
 import Validation from "../../utils/Validation.js";
-import { NAME_REGEX } from "../../utils/Consts.js";
+import { NAME_REGEX, EMAIL_REGEX } from "../../utils/Consts.js";
 
 function Register({ onRegister }) {
   const { values, errors, handleChange, isValid } = Validation();
@@ -50,6 +50,8 @@ function Register({ onRegister }) {
           maxLength="30"
           value={values.email || ""}
           onChange={handleChange}
+          pattern={EMAIL_REGEX}
+
           required
         />
         <span className="login__text-error">{errors.email}</span>

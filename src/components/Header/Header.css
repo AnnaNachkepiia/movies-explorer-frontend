@@ -103,6 +103,9 @@
 
   }
 }
+.header__button-active{
+  font-weight: 500;
+}
 .header__button_type_movies {
   padding-right: 20px;
   font-style: normal;

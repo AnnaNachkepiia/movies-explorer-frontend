@@ -1,7 +1,6 @@
 import "./SearchForm.css";
 import React, { useEffect, useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js";
-import { useLocation } from 'react-router-dom';
 
 function SearchForm({handleSubmit, handleChange, searchQuery, handleToogleCheckBox, checked}) {
 
@@ -18,6 +17,7 @@ return (
       minLength={1}
       value={searchQuery}
       onChange={handleChange}
+      required
     />
     <button type="submit" className="search__form-button">
       Найти

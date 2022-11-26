@@ -2,6 +2,7 @@ import "./Navigation.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import icon from "../../images/icon-profile.svg";
+import { NavLink } from "react-router-dom";
 
 function Navigation({ isOpen, onClose }) {
   return (
@@ -13,18 +14,27 @@ function Navigation({ isOpen, onClose }) {
           className="navigation__close-button"
         />
         <nav className="navigation__links">
-          <Link to="/" className="navigation__link">
+          <NavLink
+            to="/"
+            className="navigation__link"
+            activeClassName="navigation__link-checked"
+          >
             Главная
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/movies"
-            className="navigation__link navigation__link-checked"
+            className="navigation__link"
+            activeClassName="navigation__link-checked"
           >
             Фильмы
-          </Link>
-          <Link to="/saved-movies" className="navigation__link">
+          </NavLink>
+          <NavLink
+            to="/saved-movies"
+            className="navigation__link"
+            activeClassName="navigation__link-checked"
+          >
             Сохранённые фильмы
-          </Link>
+          </NavLink>
           <Link to="/profile" className="navigation__button-profile">
             <img
               className="header__profile-icon"

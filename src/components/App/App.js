@@ -1,6 +1,12 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useHistory, Redirect } from "react-router-dom";
+import {
+  Route,
+  Switch,
+  useHistory,
+  Redirect,
+  useLocation,
+} from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Main from "../Main/Main.js";
 import Movies from "../Movies/Movies.js";
@@ -18,13 +24,18 @@ import Navigation from "../Navigation/Navigation";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [initialMovies, setInitialMovies] = useState([]);
+  const [initialMovies, setInitialMovies] = useState(
+    JSON.parse(localStorage.getItem("allMovies")),
+    []
+  );
   const [savedMovies, setSavedMovies] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [successAction, setSuccessAction] = useState(false);
   const [tooltipMessage, setTooltipMessage] = useState("");
   const history = useHistory();
+  const location = useLocation();
+  const path = location.pathname;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -34,8 +45,11 @@ function App() {
         .then((data) => {
           setCurrentUser(data);
           setLoggedIn(true);
+          history.push(path);
         })
+
         .catch((err) => {
+          handleLogout(err);
           console.log(err);
         });
     }
@@ -46,7 +60,6 @@ function App() {
       moviesApi
         .getMovies()
         .then((data) => {
-
           localStorage.setItem("allMovies", JSON.stringify(data));
           setInitialMovies(data);
           JSON.parse(localStorage.getItem("allMovies"));
@@ -61,7 +74,7 @@ function App() {
           setTimeout(() => setInfoTooltipOpen(false), 1500);
         });
     }
-  }, [loggedIn]);
+  }, [loggedIn, history]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -74,9 +87,16 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
+          handleLogout(err);
         });
     }
   }, [loggedIn]);
+
+  function handleLogout(err) {
+    if (err.includes(401)) {
+      signOut();
+    }
+  }
 
   function handleRegister({ name, email, password }) {
     api
@@ -128,30 +148,34 @@ function App() {
         setCurrentUser({ email, name });
       })
       .catch((err) => {
+        handleLogout(err);
         console.log(err);
       });
   }
 
-  function handleUpdateUser({ name, email }) {
-    console.log({ name, email });
+  const handleUpdateUser = (data) => {
+    console.log(data);
     api
-      .editUserData({ name, email })
-      .then(({ name, email }) => {
-        setCurrentUser({ name, email });
+      .editUserData(data)
+      .then(() => {
+        setCurrentUser(data);
+        console.log(currentUser);
         setInfoTooltipOpen(true);
         setSuccessAction(true);
         setTooltipMessage("Данные пользователя обновлены.");
         setTimeout(() => setInfoTooltipOpen(false), 1500);
       })
       .catch((err) => {
+        handleLogout(err);
         console.log(err);
       });
-  }
+  };
 
   function signOut() {
     setLoggedIn(false);
-    localStorage.removeItem("savedMovies");
+    localStorage.removeItem("searchMovies");
     localStorage.removeItem("token");
+    localStorage.removeItem("checked");
     history.push("/");
   }
 
@@ -163,6 +187,7 @@ function App() {
         console.log(newMovie.image);
       })
       .catch((err) => {
+        handleLogout(err);
         console.log(err);
       });
   }
@@ -175,6 +200,7 @@ function App() {
         setSavedMovies(savedMovies.filter((i) => i._id !== movieId));
       })
       .catch((err) => {
+        handleLogout(err);
         console.log(err);
       });
   }

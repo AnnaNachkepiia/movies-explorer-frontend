@@ -3,6 +3,7 @@ import React from "react";
 import headerLogo from "../../images/logoHeader.svg";
 import { Link, useLocation } from "react-router-dom";
 import icon from "../../images/icon-profile.svg";
+import { NavLink } from "react-router-dom";
 
 function Header({ loggedIn, openMenu }) {
   const location = useLocation();
@@ -17,18 +18,21 @@ function Header({ loggedIn, openMenu }) {
         <>
           <button type="button" onClick={openMenu} className="header__menu-button" />
           <nav className="header__navigation header__navigation_type_user">
-            <Link
+            <NavLink
               to="/movies"
               className="header__button header__button_type_movies"
+              activeClassName="header__button-active"
+
             >
               Фильмы
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/saved-movies"
               className="header__button header__button_type_saved-movies"
+              activeClassName="header__button-active"
             >
               Сохранённые фильмы
-            </Link>
+            </NavLink>
             <Link
               to="/profile"
               className="header__button header__button_type_profile"

@@ -30,7 +30,7 @@ function MoviesCardList({
       </div>
       {movies.length > count ? (
         <button
-          type="button"
+          type="submit"
           className="movies__button-more"
           onClick={handleMoreMovies}
         >
