@@ -62,7 +62,6 @@ export const getUserData = () => {
 };
 
 export const editUserData = (data) => {
-  console.log(data);
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: getHeaders(),

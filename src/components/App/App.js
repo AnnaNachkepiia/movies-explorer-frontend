@@ -29,6 +29,7 @@ function App() {
     []
   );
   const [savedMovies, setSavedMovies] = useState([]);
+  const [findMovies, setFindMovies] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [successAction, setSuccessAction] = useState(false);
@@ -36,6 +37,12 @@ function App() {
   const history = useHistory();
   const location = useLocation();
   const path = location.pathname;
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isMoviesFound, setIsMoviesFound] = useState(true);
+  const [shortMovies, setShortMovies] = useState([]);
+  const [checked, setChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -91,6 +98,53 @@ function App() {
         });
     }
   }, [loggedIn]);
+  
+  // Код из SavedMovies
+
+  useEffect(() => {
+    setSavedMovies(savedMovies);
+  }, [savedMovies]);
+
+  useEffect(() => {
+    if (checked) {
+      const shortMovies = savedMovies.filter((movie) => {
+        return movie.duration <= 40;
+      });
+      setShortMovies(shortMovies);
+    }
+  }, [checked, savedMovies, setShortMovies]);
+
+  useEffect(() => {
+    if (isLoading) {
+      const searchResults = savedMovies.filter((movie) => {
+        const movieName = movie.nameRU.toLowerCase();
+        return movieName.includes(searchQuery.toLowerCase());
+      });
+      if (searchResults.length < 1) {
+        setIsMoviesFound(false);
+      } else {
+        setIsMoviesFound(true);
+        setSavedMovies(searchResults);
+        console.log(searchResults);
+      }
+    }
+    setTimeout(() => setIsLoading(false), 2000);
+  }, [isLoading, searchQuery]);
+
+  function handleToogleCheckBox() {
+    setChecked(!checked);
+  }
+
+  function handleSearchSaved(e) {
+    e.preventDefault();
+    setIsLoading(true);
+  }
+
+  function handleChangeSaved(e) {
+    setSearchQuery(e.target.value);
+  }
+
+  // Код из SavedMovies
 
   function handleLogout(err) {
     if (err.includes(401)) {
@@ -154,12 +208,10 @@ function App() {
   }
 
   const handleUpdateUser = (data) => {
-    console.log(data);
     api
       .editUserData(data)
       .then(() => {
         setCurrentUser(data);
-        console.log(currentUser);
         setInfoTooltipOpen(true);
         setSuccessAction(true);
         setTooltipMessage("Данные пользователя обновлены.");
@@ -197,7 +249,10 @@ function App() {
     api
       .deleteMovie(movieId)
       .then(() => {
-        setSavedMovies(savedMovies.filter((i) => i._id !== movieId));
+        console.log(savedMovies);
+        const filteredMovies = savedMovies.filter((i) => i._id !== movieId);
+        setSavedMovies(filteredMovies);
+        console.log(filteredMovies);
       })
       .catch((err) => {
         handleLogout(err);
@@ -252,6 +307,14 @@ function App() {
               savedMovies={savedMovies}
               handleDeleteMovie={handleDeleteMovie}
               openMenu={openMenu}
+              searchQuery={searchQuery}
+              isMoviesFound={isMoviesFound}
+              shortMovies={shortMovies}
+              checked={checked}
+              handleToogleCheckBox={handleToogleCheckBox}
+              isLoading={isLoading}
+              handleSearchSaved={handleSearchSaved}
+              handleChangeSaved={handleChangeSaved}
             />
             <ProtectedRoute
               path="/profile"
