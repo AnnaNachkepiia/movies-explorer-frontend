@@ -5,7 +5,10 @@ import { Link, useHistory } from "react-router-dom";
 function NotFound() {
   const history = useHistory();
 
-  function handleGoBack() {
+  const handleGoBack = () => {
+    history.goBack();
+    history.goBack();
+    history.goBack();
     history.goBack();
 
   }

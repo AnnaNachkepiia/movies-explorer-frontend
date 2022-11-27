@@ -59,6 +59,8 @@ function App() {
           handleLogout(err);
           console.log(err);
         });
+    } else {
+      signOut()
     }
   }, [setLoggedIn, loggedIn]);
 
@@ -225,6 +227,7 @@ function App() {
 
   function signOut() {
     setLoggedIn(false);
+    localStorage.clear()
     localStorage.removeItem("searchMovies");
     localStorage.removeItem("token");
     localStorage.removeItem("checked");
@@ -323,6 +326,7 @@ function App() {
               handleUpdateUser={handleUpdateUser}
               signOut={signOut}
               openMenu={openMenu}
+              isLoading={isLoading}
             />
             <Route path="*">
               <NotFound />

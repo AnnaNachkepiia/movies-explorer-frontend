@@ -106,12 +106,18 @@
 .header__button-active{
   font-weight: 500;
 }
+/* .header__button:active{
+  font-weight: 500;
+} */
 .header__button_type_movies {
   padding-right: 20px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
+}
+.header__button_type_movies:active{
+  font-weight: 500;
 }
 .header__button_type_saved-movies {
   padding-right: 50px;
@@ -120,6 +126,9 @@
   font-size: 14px;
   line-height: 18px;
 }
+.header__button_type_saved-movies:active{
+  font-weight: 500;
+} 
 .header__button_type_profile {
   width: 100px;
   height: 32px;

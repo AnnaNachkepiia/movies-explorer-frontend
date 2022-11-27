@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Validation from "../../utils/Validation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
+function Profile({ handleUpdateUser, signOut, loggedIn, openMenu, isLoading }) {
   const { values, handleChange, isValid, resetForm, errors } = Validation();
   const currentUser = useContext(CurrentUserContext);
   const newValue =
@@ -66,7 +66,7 @@ function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
           <span className="login__text-error">{errors.email}</span>
         </div>
         <button
-          disabled={!isValid || !newValue}
+          disabled={!isValid || !newValue || isLoading}
           type="submit"
           className="profile__button profile__button_type_edit"
         >
