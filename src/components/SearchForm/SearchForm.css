@@ -2,6 +2,17 @@
   margin-top: 60px;
   padding: 0 70px;
 }
+@media screen and (max-width: 767px) {
+  .search {
+    padding: 0 30px;
+    margin-top: 80px;
+  }
+}
+@media screen and (max-width: 419px) {
+  .search {
+    padding: 0 14px;
+  }
+}
 .search__form {
   display: flex;
   flex-direction: row;
@@ -20,6 +31,10 @@
   color: #a0a0a0;
   padding: 0 0 0 22px;
 }
+.search__form-input:focus{
+  outline: 2px solid #a0a0a0;
+}
+
 .search__form-button {
   border: none;
   position: absolute;
@@ -34,10 +49,24 @@
   font-size: 11px;
   line-height: 164%;
   text-align: center;
+  cursor: pointer;
+}
+.search__form-button:hover {
+opacity: 0.7;
 }
 .search__form-line {
   width: 100%;
   height: 1px;
   background-color: #E8E8E8;
   margin-top: 70px;
+}
+@media screen and (max-width: 767px) {
+  .search__form-line {
+    margin-top: 51px;
+  }
+}
+@media screen and (max-width: 419px) {
+  .search__form-line {
+    margin-top: 50px;
+  }
 }

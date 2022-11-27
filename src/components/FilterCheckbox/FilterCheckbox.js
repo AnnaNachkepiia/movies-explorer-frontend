@@ -1,13 +1,20 @@
 import "./FilterCheckbox.css";
 import React from "react";
 
-function FilterCheckbox() {
-    return (
-<form className="filter">
-    <input type="checkbox" className="filter__checkbox"/>
-    <p className="filter__checkbox-capture">Короткометражки</p>
-</form>
-    )
+function FilterCheckbox({ checked, handleToogleCheckBox }) {
+  return (
+    <form className="filter">
+      <input
+        type="checkbox"
+        name="checkbox"
+        id="checkbox"
+        checked={checked}
+        onChange={handleToogleCheckBox}
+        className="filter__checkbox"
+      />
+      <p className="filter__checkbox-capture">Короткометражки</p>
+    </form>
+  );
 }
 
-export default FilterCheckbox
+export default FilterCheckbox;
