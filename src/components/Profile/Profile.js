@@ -4,7 +4,6 @@ import React, { useEffect, useState, useContext } from "react";
 import Header from "../Header/Header";
 import Validation from "../../utils/Validation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { NAME_REGEX, EMAIL_REGEX } from "../../utils/Consts";
 
 function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
   const { values, handleChange, isValid, resetForm, errors } = Validation();
@@ -41,7 +40,7 @@ function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
               onChange={handleChange}
               minLength="2"
               maxLength="30"
-              pattern={NAME_REGEX}
+              pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
               required
             />
           </div>
@@ -60,21 +59,16 @@ function Profile({ handleUpdateUser, signOut, loggedIn, openMenu }) {
               onChange={handleChange}
               minLength="2"
               maxLength="30"
-              pattern={EMAIL_REGEX}
+              pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
               required
             />
           </div>
           <span className="login__text-error">{errors.email}</span>
         </div>
         <button
-          disabled={!isValid && values ? true : false}
+          disabled={!isValid || !newValue}
           type="submit"
-          // className="profile__button profile__button_type_edit-active"
-          className={
-            isValid && !values
-              ? "profile__button profile__button_type_edit-active"
-              : "profile__button profile__button_type_edit-disable"
-          }
+          className="profile__button profile__button_type_edit"
         >
           Редактировать
         </button>

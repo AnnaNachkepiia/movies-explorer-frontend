@@ -30,7 +30,7 @@ function Login({ onLogin }) {
           id="email"
           value={values.email || ""}
           onChange={handleChange}
-          pattern={EMAIL_REGEX}
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
           required
         />
         <span className="login__text-error">{errors.email}</span>

@@ -34,7 +34,7 @@ function Register({ onRegister }) {
           value={values.name || ""}
           onChange={handleChange}
           required
-          pattern={NAME_REGEX}
+          pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
         />
         <span className="login__text-error">{errors.name}</span>
 
@@ -50,8 +50,7 @@ function Register({ onRegister }) {
           maxLength="30"
           value={values.email || ""}
           onChange={handleChange}
-          pattern={EMAIL_REGEX}
-
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
           required
         />
         <span className="login__text-error">{errors.email}</span>

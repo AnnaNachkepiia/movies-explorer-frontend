@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm.js";
 import Preloader from "../Preloader/Preloader.js";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
+import {useScreenWidth} from "../../utils/ScreenSize.js"
 
 function Movies({
   initialMovies,
@@ -22,7 +23,10 @@ function Movies({
   const [shortMovies, setShortMovies] = useState([]);
   const [isMoviesFound, setIsMoviesFound] = useState(true);
   const [count, setCount] = useState(12);
-  const width = window.innerWidth;
+
+  const width = useScreenWidth();
+
+
 
   useEffect(() => {
     if (isLoading) {
@@ -35,8 +39,11 @@ function Movies({
   function searchMovie(query) {
     const searchResults = initialMovies.filter((movie) => {
       const movieName = movie.nameRU.toLowerCase();
-
-      return movieName.includes(query.toLowerCase());
+      const movieNameEn = movie.nameEN.toLowerCase();
+      return (
+        movieName.includes(query.toLowerCase()) ||
+        movieNameEn.includes(query.toLowerCase())
+      );
     });
     if (searchResults.length < 1) {
       setIsMoviesFound(false);
@@ -69,16 +76,19 @@ function Movies({
 
 
   useEffect(() => {
-    if (width >= 1024) {
+    if (width >= 990) {
       setCount(12);
     }
-    if (width < 1024 && width >= 767) {
+    // if (width < 1024 && width > 990) {
+    //   setCount(12);
+    // }
+    if (width < 990 && width > 767) {
       setCount(8);
     }
-    if (width < 767) {
+    if (width <= 767) {
       setCount(5);
-    }
-  }, []);
+    }  }, [width]);
+
 
   useEffect(() => {
     if (checked) {
@@ -94,6 +104,7 @@ function Movies({
     localStorage.setItem("searchQuery", JSON.stringify(e.target.value));
   }
 
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -107,9 +118,9 @@ function Movies({
   function handleMoreMovies() {
     if (width >= 1280) {
       setCount(count + 4);
-    } else if (width >= 1024) {
+    } else if (width >= 990) {
       setCount(count + 3);
-    } else {
+    } else if (width < 990) {
       setCount(count + 2);
     }
   }
