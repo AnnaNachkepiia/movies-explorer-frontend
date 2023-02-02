@@ -12,3 +12,8 @@ https://disk.yandex.ru/d/bcRo0r3nTCJGnQ
 
 ## Домен сайта
 https://nachkepia.movies-explorer.nomoredomains.icu/
+
+## Установка и запуск проекта:
+- Клонировать репозиторий: git clone 
+- Установить зависимости: npm install
+- Запустить сервер: npm run start
